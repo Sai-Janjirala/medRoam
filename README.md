@@ -92,16 +92,16 @@ Every year, millions of international tourists find themselves in urgent need of
 medroam/
 ├── public/
 ├── src/
-│   ├── api/                  # Axios instance, interceptors & mock service
-│   ├── app/                  # Redux store configuration
-│   ├── assets/               # Fonts, icons, static images
-│   ├── components/           # Atomic, reusable UI components
-│   │   ├── common/           # Buttons, Inputs, Badges, Skeletons
-│   │   ├── layout/           # Navbar, Footer, Sidebar
-│   │   └── provider/         # ProviderCard, PricingTable, ReviewCard
-│   ├── features/             # Redux slices (auth, providers, appointments)
-│   ├── hooks/                # useAuth, useDebounce, custom hooks
-│   ├── pages/                # Route-level page components
+│   ├── api/
+│   ├── app/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── layout/
+│   │   └── provider/
+│   ├── features/
+│   ├── hooks/
+│   ├── pages/
 │   │   ├── Landing/
 │   │   ├── Search/
 │   │   ├── ProviderDetail/
@@ -109,9 +109,9 @@ medroam/
 │   │   ├── Auth/
 │   │   ├── Dashboard/
 │   │   └── Admin/
-│   ├── routes/               # Route guards & React Router config
-│   ├── styles/               # Global styles & Tailwind config
-│   └── utils/                # Helpers, constants, validators
+│   ├── routes/
+│   ├── styles/
+│   └── utils/
 ├── .env.example
 ├── index.html
 ├── tailwind.config.js
@@ -164,18 +164,13 @@ Shadow Style   →  Subtle, layered box shadows
 ### Installation
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/your-username/medroam.git
 cd medroam
 
-# 2. Install dependencies
 npm install
 
-# 3. Set up environment variables
 cp .env.example .env.local
-# Edit .env.local with your values
 
-# 4. Start the development server
 npm run dev
 ```
 
@@ -205,10 +200,8 @@ VITE_APP_NAME=MedRoam
 ## 🧩 Custom Hooks
 
 ```js
-// useAuth — Access auth state and actions anywhere
 const { user, isAuthenticated, login, logout } = useAuth();
 
-// useDebounce — Debounce search/filter inputs
 const debouncedSearch = useDebounce(searchQuery, 400);
 ```
 
@@ -230,11 +223,11 @@ WebSocket connections are stubbed with placeholders, ready to be replaced with a
 ## 📦 Key Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Production build
-npm run preview      # Preview production build
-npm run lint         # ESLint check
-npm run format       # Prettier format
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm run format
 ```
 
 ---
