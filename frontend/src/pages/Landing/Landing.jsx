@@ -1,22 +1,20 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  MapPin, 
-  ChevronDown, 
-  Search, 
-  Calendar, 
-  ShieldPlus, 
-  Phone, 
-  Globe, 
-  Share2, 
+import {
+  Calendar,
+  ChevronDown,
+  Globe,
   Mail,
+  MapPin,
+  Phone,
+  Search,
+  Share2,
+  ShieldPlus,
   UserCircle
 } from 'lucide-react';
 
 const Landing = () => {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
-      {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-5 border-b border-gray-100 bg-white/90 backdrop-blur-md sticky top-0 z-50">
         <div className="font-bold text-2xl tracking-tight text-gray-900">Med<span className="text-[#076249]">Roam</span></div>
         <div className="hidden md:flex space-x-10 text-sm font-semibold text-gray-600">
@@ -32,9 +30,7 @@ const Landing = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="relative py-32 px-8 overflow-hidden min-h-[60vh] flex items-center">
-        {/* Subtle background abstract shapes */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-teal-50 to-white rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/3 pointer-events-none z-0"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-gray-50 to-white rounded-full blur-3xl opacity-60 translate-y-1/3 -translate-x-1/4 pointer-events-none z-0"></div>
 
@@ -65,7 +61,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
       <section className="bg-[#2a2f2e] text-white py-12 px-8 flex flex-col md:flex-row justify-center md:justify-around items-center space-y-10 md:space-y-0 text-center tracking-wider font-semibold text-xs md:text-sm">
         <div className="flex flex-col items-center">
           <span className="text-[#3edfae] text-4xl font-extrabold block mb-2">2,400+</span>
@@ -83,13 +78,11 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* How It Works */}
       <section className="py-28 px-8 max-w-7xl mx-auto text-center relative">
         <h2 className="text-4xl font-extrabold text-gray-900 mb-5 tracking-tight">How It Works</h2>
         <p className="text-gray-500 mb-20 text-lg max-w-2xl mx-auto">Three simple steps to access world-class healthcare on the move.</p>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Card 1 */}
           <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between h-full group">
             <div className="absolute -bottom-6 -right-4 text-[150px] leading-none font-bold text-gray-50/80 z-0 select-none group-hover:text-teal-50 transition-colors duration-300">1</div>
             <div className="relative z-10">
@@ -100,7 +93,6 @@ const Landing = () => {
               <p className="text-gray-500 leading-relaxed">Search by location and language to find a verified clinic or roaming medic near you.</p>
             </div>
           </div>
-          {/* Card 2 */}
           <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between h-full group">
             <div className="absolute -bottom-6 -right-4 text-[150px] leading-none font-bold text-gray-50/80 z-0 select-none group-hover:text-teal-50 transition-colors duration-300">2</div>
             <div className="relative z-10">
@@ -111,7 +103,6 @@ const Landing = () => {
               <p className="text-gray-500 leading-relaxed">Confirm your appointment or request immediate logistics support through our secure platform.</p>
             </div>
           </div>
-          {/* Card 3 */}
           <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between h-full group">
             <div className="absolute -bottom-6 -right-4 text-[150px] leading-none font-bold text-gray-50/80 z-0 select-none group-hover:text-teal-50 transition-colors duration-300">3</div>
             <div className="relative z-10">
@@ -125,7 +116,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Featured Cities */}
       <section className="py-24 px-8 max-w-7xl mx-auto bg-gray-50/50 rounded-[40px] mb-32 border border-gray-100/50 shadow-sm">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 px-4">
           <div>
@@ -138,7 +128,6 @@ const Landing = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
-          {/* City Card 1: Mumbai */}
           <div className="relative h-80 rounded-3xl overflow-hidden group cursor-pointer shadow-md">
             <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?w=600&q=80" alt="Mumbai" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -147,7 +136,6 @@ const Landing = () => {
               <h3 className="text-3xl font-bold tracking-tight">Mumbai</h3>
             </div>
           </div>
-          {/* City Card 2: Delhi */}
           <div className="relative h-80 rounded-3xl overflow-hidden group cursor-pointer shadow-md">
             <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80" alt="Delhi" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -156,7 +144,6 @@ const Landing = () => {
               <h3 className="text-3xl font-bold tracking-tight">Delhi</h3>
             </div>
           </div>
-          {/* City Card 3: Goa */}
           <div className="relative h-80 rounded-3xl overflow-hidden group cursor-pointer shadow-md">
             <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80" alt="Goa" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -165,7 +152,6 @@ const Landing = () => {
               <h3 className="text-3xl font-bold tracking-tight">Goa</h3>
             </div>
           </div>
-          {/* City Card 4: Jaipur */}
           <div className="relative h-80 rounded-3xl overflow-hidden group cursor-pointer shadow-md">
             <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&q=80" alt="Jaipur" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -177,9 +163,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Emergency CTA */}
       <section className="bg-gradient-to-r from-[#076249] to-[#0bc08e] py-20 px-10 mx-auto max-w-7xl rounded-[40px] mb-20 text-white flex flex-col md:flex-row justify-between items-center overflow-hidden relative shadow-2xl shadow-teal-900/20">
-        {/* Abstract background shapes */}
         <div className="absolute right-0 top-0 w-96 h-96 bg-white/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
         <div className="absolute left-0 bottom-0 w-64 h-64 bg-black/5 rounded-full blur-2xl transform -translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
         
@@ -200,7 +184,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-white pt-20 pb-10 px-8 border-t border-gray-100 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           <div className="md:col-span-5">
@@ -234,7 +217,6 @@ const Landing = () => {
         </div>
         
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-medium">
-          <p>© 2024 MedRoam Logistics. All rights reserved.</p>
         </div>
       </footer>
     </div>

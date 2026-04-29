@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, HelpCircle, Shield, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Lock, Eye, EyeOff, HelpCircle } from 'lucide-react';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-radial bg-medroam-bg flex flex-col relative overflow-hidden font-sans">
-      {/* Background Decorators */}
       <div className="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] rounded-full border-[40px] border-gray-50/50 opacity-50 pointer-events-none"></div>
       <div className="absolute top-20 right-20 w-[400px] h-[400px] rounded-full border-[20px] border-gray-50/50 opacity-50 pointer-events-none"></div>
 
-      {/* Header */}
       <header className="w-full flex justify-between items-center px-8 py-6 bg-white shadow-sm z-10 border-b border-gray-100">
         <div className="font-bold text-xl tracking-[0.2em] text-gray-900">MEDROAM</div>
         <button className="flex items-center space-x-2 text-sm text-gray-500 hover:text-gray-700 transition-colors">
@@ -19,7 +17,6 @@ const Login = () => {
         </button>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center p-4 relative z-10">
         <div className="w-full max-w-[440px] bg-white rounded-xl shadow-2xl shadow-gray-200/50 p-8 md:p-10 border border-gray-100">
           <div className="text-center mb-8">
@@ -141,8 +138,6 @@ const Login = () => {
 
 
       </main>
-
-      {/* Footer */}
 
     </div>
   );

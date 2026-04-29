@@ -18,7 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom styles for gradients and fine details */
 .bg-gradient-radial {
   background-image: radial-gradient(circle at top left, rgba(200, 240, 230, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
 }
