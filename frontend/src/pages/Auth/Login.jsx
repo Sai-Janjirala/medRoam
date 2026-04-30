@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, HelpCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate('/dashboard');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-radial bg-medroam-bg flex flex-col relative overflow-hidden font-sans">
@@ -24,7 +31,7 @@ const Login = () => {
             <p className="text-sm text-gray-500">Access your secure medical logistics portal</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div className="space-y-2">
               <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Professional Email</label>
               <div className="relative">
@@ -130,9 +137,9 @@ const Login = () => {
 
           <p className="mt-8 text-center text-sm text-gray-500">
             Don't have an account?{' '}
-            <a href="#" className="font-semibold text-[#076249] hover:text-[#064f3a] transition-colors">
+            <Link to="/dashboard" className="font-semibold text-[#076249] hover:text-[#064f3a] transition-colors">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
 

@@ -23,7 +23,7 @@ const Landing = () => {
         </div>
         <div className="flex items-center space-x-6 text-sm font-semibold">
           <Link to="/login" className="text-gray-600 hover:text-[#076249] transition-colors">Login</Link>
-          <Link to="/login" className="bg-[#076249] text-white px-5 py-2.5 rounded-lg hover:bg-[#064f3a] transition-all hover:shadow-lg hover:-translate-y-0.5">Sign Up</Link>
+          <Link to="/dashboard" className="bg-[#076249] text-white px-5 py-2.5 rounded-lg hover:bg-[#064f3a] transition-all hover:shadow-lg hover:-translate-y-0.5">Sign Up</Link>
           <button className="text-gray-400 hover:text-[#076249] transition-colors hidden sm:block">
             <UserCircle size={24} />
           </button>

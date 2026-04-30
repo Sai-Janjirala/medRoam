@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { doctors } from '../../data/doctors';
 import {
   MapPin,
   Star,
@@ -12,6 +13,9 @@ import {
 } from 'lucide-react';
 
 const ProviderDetail = () => {
+  const { id } = useParams();
+  const doc = doctors.find(d => d.id === parseInt(id)) || doctors[0];
+
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
       {/* Navbar */}
@@ -42,7 +46,7 @@ const ProviderDetail = () => {
           <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-6 w-full md:w-auto">
             <div className="relative shrink-0">
               <div className="w-28 h-28 rounded-xl overflow-hidden bg-gray-100 shadow-inner">
-                <img src="https://images.unsplash.com/photo-1537368910025-702800faa86b?w=400&q=80" alt="Dr. Julian Vane" className="w-full h-full object-cover object-top" />
+                <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm">
                 <div className="bg-[#076249] text-white rounded-full p-1">
@@ -53,20 +57,22 @@ const ProviderDetail = () => {
             
             <div className="text-center sm:text-left">
               <div className="flex flex-col sm:flex-row items-center gap-3 mb-2">
-                <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Dr. Julian Vane</h1>
-                <span className="bg-[#076249] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider leading-none">Active Now</span>
+                <h1 className="text-2xl font-bold text-gray-900 tracking-tight">{doc.name}</h1>
+                <span className="bg-[#076249] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider leading-none">
+                  {doc.availableNow ? 'Active Now' : 'Offline'}
+                </span>
               </div>
-              <p className="text-gray-500 font-medium mb-3 text-sm">Roaming Specialist | Senior Emergency Logistics Expert</p>
+              <p className="text-gray-500 font-medium mb-3 text-sm">{doc.specialty}</p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs font-semibold">
                 <div className="flex items-center text-gray-900">
                   <Star size={14} className="text-[#076249] fill-[#076249] mr-1.5" />
-                  4.9 <span className="text-gray-400 font-normal ml-1">(124 Reviews)</span>
+                  {doc.rating} <span className="text-gray-400 font-normal ml-1">({doc.reviews} Reviews)</span>
                 </div>
                 <div className="hidden sm:block w-1 h-1 bg-gray-300 rounded-full"></div>
                 <div className="flex items-center text-gray-500">
                   <MapPin size={14} className="mr-1.5 text-gray-400" />
-                  Greater Metropolitan Area
+                  {doc.location}
                 </div>
               </div>
             </div>
@@ -168,7 +174,7 @@ const ProviderDetail = () => {
                 <div className="flex items-start">
                   <CheckCircle size={18} className="text-[#076249] mr-3 shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-bold text-gray-900 text-sm">15+ Years Exp</h3>
+                    <h3 className="font-bold text-gray-900 text-sm">{doc.experience}</h3>
                     <p className="text-xs text-gray-500 font-medium mt-0.5">Former Head of Metro Trauma</p>
                   </div>
                 </div>
