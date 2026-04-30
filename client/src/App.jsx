@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import api from './utils/api';
+
+import Landing from './pages/Landing/Landing';
+import Login from './pages/Auth/Login';
+import Search from './pages/Search/Search';
+import ProviderDetail from './pages/ProviderDetail/ProviderDetail';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Booking from './pages/Booking/Booking';
+import BookingSuccess from './pages/Booking/BookingSuccess';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    api.get('/hello')
-      .then(res => setMessage(res.data.message))
-      .catch(err => console.error(err));
-  }, []);
-
   return (
     <HelmetProvider>
-      <div>
-        <h1>Hello World</h1>
-        {message && <p>Backend says: {message}</p>}
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/provider/:id" element={<ProviderDetail />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/booking/:id" element={<Booking />} />
+          <Route path="/booking/success" element={<BookingSuccess />} />
+        </Routes>
+      </BrowserRouter>
     </HelmetProvider>
   );
 }

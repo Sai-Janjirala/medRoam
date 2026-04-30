@@ -10,7 +10,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+const doctorsRoute = require('./routes/doctors');
+const bookingsRoute = require('./routes/bookings');
+const authRoute = require('./routes/auth');
 const helloRoute = require('./routes/hello');
+
+app.use('/api/doctors', doctorsRoute);
+app.use('/api/bookings', bookingsRoute);
+app.use('/api/auth', authRoute);
 app.use('/api', helloRoute);
 
 app.get('/health', (req, res) => {
