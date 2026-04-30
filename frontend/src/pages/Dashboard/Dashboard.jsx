@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   LayoutDashboard,
   Calendar,
@@ -12,6 +13,21 @@ import {
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/bookings')
+      .then(res => res.json())
+      .then(data => {
+        setBookings(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch bookings", err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 flex flex-col md:flex-row selection:bg-[#076249] selection:text-white">
@@ -92,37 +108,29 @@ const Dashboard = () => {
             </div>
             
             <div className="space-y-4">
-              <div className="bg-[#f8fafc] border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 rounded-md bg-[#e6f4f0] text-[#076249] flex items-center justify-center shrink-0">
-                    <Plus size={20} />
+              {loading ? (
+                <div className="text-gray-500 font-medium p-4">Loading appointments...</div>
+              ) : bookings.length === 0 ? (
+                <div className="text-gray-500 font-medium p-4">No upcoming appointments. Book one today!</div>
+              ) : (
+                bookings.map((booking) => (
+                  <div key={booking.id} className="bg-[#f8fafc] border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 rounded-md bg-[#e6f4f0] text-[#076249] flex items-center justify-center shrink-0">
+                        <Plus size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900 text-sm">Doctor #{booking.doctorId} Consultation</h3>
+                        <p className="text-xs text-gray-500 font-medium mt-0.5">Patient: {booking.patientFirstName} {booking.patientLastName}</p>
+                      </div>
+                    </div>
+                    <div className="text-left sm:text-right">
+                      <p className="font-bold text-gray-900 text-sm">{booking.date}</p>
+                      <p className="text-[#076249] text-xs font-bold mt-0.5">{booking.time}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 text-sm">General Consultation</h3>
-                    <p className="text-xs text-gray-500 font-medium mt-0.5">Dr. Elena Silva • Lisbon Medical Center</p>
-                  </div>
-                </div>
-                <div className="text-left sm:text-right">
-                  <p className="font-bold text-gray-900 text-sm">Oct 24, 2024</p>
-                  <p className="text-[#076249] text-xs font-bold mt-0.5">09:30 AM</p>
-                </div>
-              </div>
-
-              <div className="bg-[#f8fafc] border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 rounded-md bg-white border border-gray-200 text-[#076249] flex items-center justify-center shrink-0 shadow-sm">
-                    <span className="text-xl font-serif leading-none">*</span>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 text-sm">Physiotherapy Session</h3>
-                    <p className="text-xs text-gray-500 font-medium mt-0.5">RoamCare Hub • Porto District</p>
-                  </div>
-                </div>
-                <div className="text-left sm:text-right">
-                  <p className="font-bold text-gray-900 text-sm">Oct 28, 2024</p>
-                  <p className="text-gray-500 text-xs font-bold mt-0.5">14:00 PM</p>
-                </div>
-              </div>
+                ))
+              )}
             </div>
           </div>
 

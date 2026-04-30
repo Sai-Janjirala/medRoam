@@ -4,11 +4,29 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate('/dashboard');
+    setError('');
+    
+    fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+    .then(res => {
+      if(!res.ok) throw new Error('Invalid credentials');
+      return res.json();
+    })
+    .then(data => {
+      navigate('/dashboard');
+    })
+    .catch(err => {
+      setError(err.message);
+    });
   };
 
   return (
@@ -32,47 +50,53 @@ const Login = () => {
           </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
-            <div className="space-y-2">
-              <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Professional Email</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail size={18} className="text-gray-400" />
-                </div>
-                <input
-                  type="email"
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#076249] focus:border-[#076249] sm:text-sm transition-colors outline-none"
-                  placeholder="name@medroam.com"
-                  required
-                />
-              </div>
-            </div>
+              {error && <p className="text-red-500 text-sm font-semibold text-center">{error}</p>}
 
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Security Key</label>
-                <a href="#" className="text-xs font-medium text-[#076249] hover:text-[#064f3a] transition-colors">
-                  Forgot Password?
-                </a>
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock size={18} className="text-gray-400" />
+              <div className="space-y-2">
+                <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Professional Email</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail size={18} className="text-gray-400" />
+                  </div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#076249] focus:border-[#076249] sm:text-sm transition-colors outline-none"
+                    placeholder="name@medroam.com"
+                    required
+                  />
                 </div>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="block w-full pl-10 pr-10 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#076249] focus:border-[#076249] sm:text-sm transition-colors tracking-widest outline-none"
-                  placeholder="••••••••"
-                  required
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
               </div>
-            </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Security Key</label>
+                  <a href="#" className="text-xs font-medium text-[#076249] hover:text-[#064f3a] transition-colors">
+                    Forgot Password?
+                  </a>
+                </div>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock size={18} className="text-gray-400" />
+                  </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full pl-10 pr-10 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#076249] focus:border-[#076249] sm:text-sm transition-colors tracking-widest outline-none"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
 
             <div className="flex items-center">
               <input

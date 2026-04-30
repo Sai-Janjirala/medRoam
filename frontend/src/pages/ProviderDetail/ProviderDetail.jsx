@@ -1,4 +1,5 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { doctors } from '../../data/doctors';
 import {
   MapPin,
@@ -15,7 +16,27 @@ import {
 const ProviderDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const doc = doctors.find(d => d.id === parseInt(id)) || doctors[0];
+  const [doc, setDoc] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/doctors/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Not found");
+        return res.json();
+      })
+      .then(data => {
+        setDoc(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center font-bold text-gray-500">Loading Provider Details...</div>;
+  if (!doc) return <div className="min-h-screen flex items-center justify-center font-bold text-red-500">Provider not found</div>;
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
