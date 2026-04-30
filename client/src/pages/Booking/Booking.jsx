@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import BASE_URL from '../../utils/api';
+import { doctors as mockDoctors } from '../../utils/doctors';
 import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'lucide-react';
 
 const Booking = () => {
@@ -18,13 +19,18 @@ const Booking = () => {
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/doctors/${id}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Not found");
+        return res.json();
+      })
       .then(data => {
         setDoc(data);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.warn("Backend fetch failed, using mock data.", err);
+        const fallbackDoc = mockDoctors.find(d => d.id === parseInt(id));
+        setDoc(fallbackDoc || null);
         setLoading(false);
       });
   }, [id]);

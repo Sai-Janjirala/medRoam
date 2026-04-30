@@ -1,6 +1,7 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import BASE_URL from '../../utils/api';
+import { doctors as mockDoctors } from '../../utils/doctors';
 import {
   MapPin,
   Star,
@@ -30,7 +31,9 @@ const ProviderDetail = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.warn("Backend fetch failed, using mock data.", err);
+        const fallbackDoc = mockDoctors.find(d => d.id === parseInt(id));
+        setDoc(fallbackDoc || null);
         setLoading(false);
       });
   }, [id]);

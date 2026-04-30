@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import BASE_URL from '../../utils/api';
+import { doctors as mockDoctors } from '../../utils/doctors';
 import {
   MapPin,
   Briefcase,
@@ -18,13 +19,17 @@ const Search = () => {
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/doctors`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API failed');
+        return res.json();
+      })
       .then(data => {
-        setDoctors(data);
+        setDoctors(data && data.length > 0 ? data : mockDoctors);
         setLoading(false);
       })
       .catch(err => {
-        console.error("Failed to fetch doctors:", err);
+        console.warn("Backend fetch failed, using mock data.", err);
+        setDoctors(mockDoctors);
         setLoading(false);
       });
   }, []);

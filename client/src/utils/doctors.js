@@ -37,5 +37,44 @@ export const doctors = [
     price: "$210.00",
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80",
     about: "Dr. James Wilson is a renowned dermatologist focusing on medical, surgical, and cosmetic dermatology. He is highly skilled in treating a wide array of skin conditions and developing personalized skincare regimens."
+  },
+  {
+    id: 4,
+    name: "Dr. Sarah Chen",
+    specialty: "NEUROLOGIST",
+    rating: "4.9",
+    reviews: "156",
+    location: "Mount Sinai, NY",
+    experience: "10+ Yrs Exp",
+    availableNow: false,
+    price: "$250.00",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80",
+    about: "Dr. Sarah Chen specializes in treating disorders of the nervous system. She has extensive experience with migraines, epilepsy, and movement disorders."
+  },
+  {
+    id: 5,
+    name: "Dr. Michael Chang",
+    specialty: "ORTHOPEDIC SURGEON",
+    rating: "4.7",
+    reviews: "98",
+    location: "Sports Med, Chicago",
+    experience: "14+ Yrs Exp",
+    availableNow: true,
+    price: "$220.00",
+    image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80",
+    about: "Dr. Michael Chang is an expert in sports injuries and joint replacements. He is dedicated to helping patients regain their mobility and active lifestyles."
+  },
+  {
+    id: 6,
+    name: "Dr. Emily Taylor",
+    specialty: "PSYCHIATRIST",
+    rating: "5.0",
+    reviews: "312",
+    location: "Wellness Clinic, Seattle",
+    experience: "9+ Yrs Exp",
+    availableNow: true,
+    price: "$160.00",
+    image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=400&q=80",
+    about: "Dr. Emily Taylor offers compassionate psychiatric care, focusing on anxiety, depression, and stress management. She provides both therapy and medication management."
   }
 ];
