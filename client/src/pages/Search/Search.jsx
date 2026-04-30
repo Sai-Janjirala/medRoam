@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BASE_URL from '../../utils/api';
 import {
   MapPin,
   Briefcase,
@@ -16,7 +17,7 @@ const Search = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/doctors')
+    fetch(`${BASE_URL}/api/doctors`)
       .then(res => res.json())
       .then(data => {
         setDoctors(data);

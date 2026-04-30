@@ -1,5 +1,6 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BASE_URL from '../../utils/api';
 import {
   MapPin,
   Star,
@@ -19,7 +20,7 @@ const ProviderDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/doctors/${id}`)
+    fetch(`${BASE_URL}/api/doctors/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

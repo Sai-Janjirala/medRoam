@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import BASE_URL from '../../utils/api';
 import {
   LayoutDashboard,
   Calendar,
@@ -17,7 +18,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/bookings')
+    fetch(`${BASE_URL}/api/bookings`)
       .then(res => res.json())
       .then(data => {
         setBookings(data);

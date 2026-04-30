@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, HelpCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import BASE_URL from '../../utils/api';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     
-    fetch('http://localhost:5000/api/auth/login', {
+    fetch(`${BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })

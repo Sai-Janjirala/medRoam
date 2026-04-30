@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import BASE_URL from '../../utils/api';
 import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'lucide-react';
 
 const Booking = () => {
@@ -16,7 +17,7 @@ const Booking = () => {
   const [email, setEmail] = useState('julian.rossi@traveler.com');
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/doctors/${id}`)
+    fetch(`${BASE_URL}/api/doctors/${id}`)
       .then(res => res.json())
       .then(data => {
         setDoc(data);
@@ -42,7 +43,7 @@ const Booking = () => {
       amount: (parseFloat(doc.price.replace('$', '')) + 5).toFixed(2)
     };
 
-    fetch('http://localhost:5000/api/bookings', {
+    fetch(`${BASE_URL}/api/bookings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bookingData)
