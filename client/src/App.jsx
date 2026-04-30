@@ -18,10 +18,10 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/provider/:id" element={<ProviderDetail />} />
+          <Route path="/provider-detail/:id" element={<ProviderDetail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/booking/:id" element={<Booking />} />
-          <Route path="/booking/success" element={<BookingSuccess />} />
+          <Route path="/booking-success" element={<BookingSuccess />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

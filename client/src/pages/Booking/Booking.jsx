@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { doctors } from '../../data/doctors';
 import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'lucide-react';
 
 const Booking = () => {

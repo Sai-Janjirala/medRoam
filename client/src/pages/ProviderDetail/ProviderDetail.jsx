@@ -1,6 +1,5 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { doctors } from '../../data/doctors';
 import {
   MapPin,
   Star,

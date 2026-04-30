@@ -82,47 +82,6 @@ Every year, millions of international tourists find themselves in urgent need of
 | [React Helmet Async](https://github.com/staylor/react-helmet-async) | Dynamic SEO Meta Tags |
 | Custom Hooks (`useAuth`, `useDebounce`) | Reusable Logic Abstraction |
 | Mock API Service | Axios Interceptors + Simulated Delays |
-| WebSocket Placeholders | Real-time Ready Architecture |
-
----
-
-## 🗂️ Project Structure
-
-```
-medroam/
-├── public/
-├── src/
-│   ├── api/
-│   ├── app/
-│   ├── assets/
-│   ├── components/
-│   │   ├── common/
-│   │   ├── layout/
-│   │   └── provider/
-│   ├── features/
-│   ├── hooks/
-│   ├── pages/
-│   │   ├── Landing/
-│   │   ├── Search/
-│   │   ├── ProviderDetail/
-│   │   ├── Helpline/
-│   │   ├── Auth/
-│   │   ├── Dashboard/
-│   │   └── Admin/
-│   ├── routes/
-│   ├── styles/
-│   └── utils/
-├── .env.example
-├── index.html
-├── tailwind.config.js
-├── vite.config.js
-└── package.json
-```
-
----
-
-## 📄 Pages & Routes
-
 | Route | Page | Description |
 |---|---|---|
 | `/` | Landing Page | Hero search, stats, how-it-works, featured cities, emergency CTA |
