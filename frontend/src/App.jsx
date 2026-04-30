@@ -4,6 +4,8 @@ import Login from './pages/Auth/Login';
 import Search from './pages/Search/Search';
 import ProviderDetail from './pages/ProviderDetail/ProviderDetail';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Booking from './pages/Booking/Booking';
+import BookingSuccess from './pages/Booking/BookingSuccess';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/provider-detail/:id" element={<ProviderDetail />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/booking/:id" element={<Booking />} />
+        <Route path="/booking-success" element={<BookingSuccess />} />
       </Routes>
     </BrowserRouter>
   );
