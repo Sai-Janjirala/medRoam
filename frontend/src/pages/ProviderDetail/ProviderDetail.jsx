@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { doctors } from '../../data/doctors';
 import {
   MapPin,
@@ -14,6 +14,7 @@ import {
 
 const ProviderDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const doc = doctors.find(d => d.id === parseInt(id)) || doctors[0];
 
   return (
@@ -79,7 +80,10 @@ const ProviderDetail = () => {
           </div>
           
           <div className="flex flex-col gap-3 w-full md:w-48 shrink-0 mt-4 md:mt-0">
-            <button className="bg-[#076249] text-white px-4 py-3 rounded-md font-semibold text-sm flex items-center justify-center hover:bg-[#064f3a] transition-all shadow-sm hover:shadow-md">
+            <button 
+              onClick={() => navigate(`/booking/${doc.id}`)}
+              className="bg-[#076249] text-white px-4 py-3 rounded-md font-semibold text-sm flex items-center justify-center hover:bg-[#064f3a] transition-all shadow-sm hover:shadow-md"
+            >
               <Calendar size={16} className="mr-2 opacity-90" />
               Book Appointment
             </button>
@@ -110,7 +114,13 @@ const ProviderDetail = () => {
                   { day: 'WED', time: '14:15', active: false },
                   { day: 'THU', time: '16:45', active: false },
                 ].map((slot, idx) => (
-                  <div key={idx} className={`border flex flex-col items-center justify-center py-5 rounded-md cursor-pointer transition-all ${slot.active ? 'bg-[#6ae0b6] border-[#6ae0b6] text-gray-900 shadow-md transform -translate-y-0.5' : 'bg-white border-gray-200 text-gray-800 hover:border-[#6ae0b6] hover:shadow-sm'}`}>
+                  <div 
+                    key={idx} 
+                    onClick={() => {
+                      if(slot.active) navigate(`/booking/${doc.id}`);
+                    }}
+                    className={`border flex flex-col items-center justify-center py-5 rounded-md cursor-pointer transition-all ${slot.active ? 'bg-[#6ae0b6] border-[#6ae0b6] text-gray-900 shadow-md transform -translate-y-0.5' : 'bg-white border-gray-200 text-gray-800 hover:border-[#6ae0b6] hover:shadow-sm'}`}
+                  >
                     <span className={`text-[11px] font-bold tracking-wider mb-1 ${slot.active ? 'text-gray-800' : 'text-gray-400'}`}>{slot.day}</span>
                     <span className="text-2xl font-bold tracking-tight">{slot.time}</span>
                   </div>
