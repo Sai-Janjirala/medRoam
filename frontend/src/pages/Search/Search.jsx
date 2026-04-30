@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   MapPin,
   Briefcase,
@@ -9,10 +10,23 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-import { doctors } from '../../data/doctors';
-
 const Search = () => {
   const navigate = useNavigate();
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/doctors')
+      .then(res => res.json())
+      .then(data => {
+        setDoctors(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch doctors:", err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
@@ -114,7 +128,9 @@ const Search = () => {
         {/* Search Results List */}
         <div className="flex-1">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">24 Specialists found</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {loading ? "Loading Specialists..." : `${doctors.length} Specialists found`}
+            </h1>
             <div className="flex items-center text-sm">
               <span className="text-gray-500 mr-2">Sorting by:</span>
               <span className="font-semibold text-gray-900 cursor-pointer flex items-center hover:text-[#076249] transition-colors">

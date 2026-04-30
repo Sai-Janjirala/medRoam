@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { doctors } from '../../data/doctors';
 import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'lucide-react';
@@ -6,15 +6,57 @@ import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'l
 const Booking = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const doc = doctors.find(d => d.id === parseInt(id)) || doctors[0];
+  const [doc, setDoc] = useState(null);
+  const [loading, setLoading] = useState(true);
   
   const [selectedDate, setSelectedDate] = useState('May 14, 2024');
   const [selectedTime, setSelectedTime] = useState('11:30 AM');
+  
+  const [firstName, setFirstName] = useState('Julian');
+  const [lastName, setLastName] = useState('Rossi');
+  const [email, setEmail] = useState('julian.rossi@traveler.com');
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/doctors/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setDoc(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleConfirm = (e) => {
     e.preventDefault();
-    navigate('/booking-success');
+    if (!doc) return;
+    
+    const bookingData = {
+      doctorId: doc.id,
+      date: selectedDate,
+      time: selectedTime,
+      patientFirstName: firstName,
+      patientLastName: lastName,
+      patientEmail: email,
+      amount: (parseFloat(doc.price.replace('$', '')) + 5).toFixed(2)
+    };
+
+    fetch('http://localhost:5000/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookingData)
+    })
+    .then(res => res.json())
+    .then(() => {
+      navigate('/booking-success');
+    })
+    .catch(err => console.error("Error creating booking", err));
   };
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center font-bold text-gray-500">Loading Booking Details...</div>;
+  if (!doc) return <div className="min-h-screen flex items-center justify-center font-bold text-red-500">Provider not found</div>;
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800">
@@ -77,9 +119,9 @@ const Booking = () => {
               <div>
                 <h3 className="text-sm font-bold text-gray-900 mb-4">Patient Information</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="text" placeholder="First Name" defaultValue="Julian" required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249]" />
-                  <input type="text" placeholder="Last Name" defaultValue="Rossi" required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249]" />
-                  <input type="email" placeholder="Email Address" defaultValue="julian.rossi@traveler.com" required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249] sm:col-span-2" />
+                  <input type="text" placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249]" />
+                  <input type="text" placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249]" />
+                  <input type="email" placeholder="Email Address" value={email} onChange={e => setEmail(e.target.value)} required className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#076249] sm:col-span-2" />
                 </div>
               </div>
 
