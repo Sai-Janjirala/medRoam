@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   MapPin,
   Briefcase,
@@ -9,46 +9,11 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-const doctors = [
-  {
-    id: 1,
-    name: "Dr. Marcus Thorne",
-    specialty: "SENIOR CARDIOLOGIST",
-    rating: "4.9",
-    reviews: "128",
-    location: "MedCenter, SF",
-    experience: "15+ Yrs Exp",
-    availableNow: true,
-    price: "$180.00",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80"
-  },
-  {
-    id: 2,
-    name: "Dr. Elena Rodriguez",
-    specialty: "PEDIATRIC SPECIALIST",
-    rating: "5.0",
-    reviews: "242",
-    location: "Children's Health, Austin",
-    experience: "8+ Yrs Exp",
-    availableNow: true,
-    price: "$145.00",
-    image: "https://images.unsplash.com/photo-1594824436998-d467946927d7?w=400&q=80"
-  },
-  {
-    id: 3,
-    name: "Dr. James Wilson",
-    specialty: "DERMATOLOGIST",
-    rating: "4.8",
-    reviews: "86",
-    location: "Skin Institute, NYC",
-    experience: "12+ Yrs Exp",
-    availableNow: true,
-    price: "$210.00",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80"
-  }
-];
+import { doctors } from '../../data/doctors';
 
 const Search = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
       {/* Navbar */}
@@ -161,7 +126,11 @@ const Search = () => {
 
           <div className="space-y-5">
             {doctors.map((doc) => (
-              <div key={doc.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col md:flex-row gap-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 group">
+              <div 
+                key={doc.id} 
+                onClick={() => navigate(`/provider-detail/${doc.id}`)}
+                className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col md:flex-row gap-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 group cursor-pointer"
+              >
                 {/* Doctor Image */}
                 <div className="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                   <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
