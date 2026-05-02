@@ -10,24 +10,12 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    try {
-      await login(email, password);
-      toast.success('Welcome back! Logged in successfully.');
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.message);
-      toast.error(err.message || 'Login failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    await login(email, password);
+    toast.success('Welcome back! Logged in successfully.');
+    navigate('/dashboard');
   };
 
   return (
@@ -51,7 +39,6 @@ const Login = () => {
           </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
-              {error && <p className="text-red-500 text-sm font-semibold text-center">{error}</p>}
 
               <div className="space-y-2">
                 <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Professional Email</label>
@@ -113,10 +100,9 @@ const Login = () => {
 
             <button
               type="submit"
-              disabled={loading}
-              className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white ${loading ? 'bg-gray-400' : 'bg-[#076249] hover:bg-[#064f3a]'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors`}
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-[#076249] hover:bg-[#064f3a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors"
             >
-              {loading ? 'Signing In...' : 'Sign In'} <span className="ml-2 font-bold">→</span>
+              Sign In <span className="ml-2 font-bold">→</span>
             </button>
           </form>
 

@@ -12,30 +12,18 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError('');
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
       toast.error('Passwords do not match');
       return;
     }
 
-    setLoading(true);
-    try {
-      await register(name, email, password);
-      toast.success('Account created successfully!');
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.message);
-      toast.error(err.message || 'Signup failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    await register(name, email, password);
+    toast.success('Account created successfully!');
+    navigate('/dashboard');
   };
 
   return (
@@ -59,7 +47,6 @@ const Signup = () => {
           </div>
 
           <form className="space-y-6" onSubmit={handleSignup}>
-            {error && <p className="text-red-500 text-sm font-semibold text-center">{error}</p>}
 
             <div className="space-y-2">
               <label className="block text-xs font-bold text-gray-500 tracking-wider uppercase">Full Name</label>
@@ -138,10 +125,9 @@ const Signup = () => {
 
             <button
               type="submit"
-              disabled={loading}
-              className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white ${loading ? 'bg-gray-400' : 'bg-[#076249] hover:bg-[#064f3a]'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors`}
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-[#076249] hover:bg-[#064f3a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors"
             >
-              {loading ? 'Creating Account...' : 'Sign Up'} <span className="ml-2 font-bold">→</span>
+              Sign Up <span className="ml-2 font-bold">→</span>
             </button>
           </form>
 
