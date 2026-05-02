@@ -22,6 +22,10 @@ app.use('/api/bookings', bookingsRoute);
 app.use('/api/auth', authRoute);
 app.use('/api', helloRoute);
 
+app.get('/', (req, res) => {
+  res.json({ message: "MedRoam API is running 🚀", status: "ok" })
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: "ok" });
 });
