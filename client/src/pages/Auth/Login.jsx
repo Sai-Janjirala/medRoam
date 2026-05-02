@@ -1,33 +1,33 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, HelpCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import BASE_URL from '../../utils/api';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
-    
-    fetch(`${BASE_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    })
-    .then(res => {
-      if(!res.ok) throw new Error('Invalid credentials');
-      return res.json();
-    })
-    .then(data => {
+    setLoading(true);
+
+    try {
+      await login(email, password);
+      toast.success('Welcome back! Logged in successfully.');
       navigate('/dashboard');
-    })
-    .catch(err => {
+    } catch (err) {
       setError(err.message);
-    });
+      toast.error(err.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -113,9 +113,10 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-[#076249] hover:bg-[#064f3a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors"
+              disabled={loading}
+              className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white ${loading ? 'bg-gray-400' : 'bg-[#076249] hover:bg-[#064f3a]'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#076249] transition-colors`}
             >
-              Sign In <span className="ml-2 font-bold">→</span>
+              {loading ? 'Signing In...' : 'Sign In'} <span className="ml-2 font-bold">→</span>
             </button>
           </form>
 
@@ -162,7 +163,7 @@ const Login = () => {
 
           <p className="mt-8 text-center text-sm text-gray-500">
             Don't have an account?{' '}
-            <Link to="/dashboard" className="font-semibold text-[#076249] hover:text-[#064f3a] transition-colors">
+            <Link to="/signup" className="font-semibold text-[#076249] hover:text-[#064f3a] transition-colors">
               Sign Up
             </Link>
           </p>

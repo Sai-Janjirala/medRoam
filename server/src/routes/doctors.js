@@ -1,19 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Doctor = require('../models/Doctor');
+const fs = require('fs');
+const path = require('path');
 
-router.get('/', async (req, res) => {
+const getDoctors = () => {
+  const filePath = path.join(__dirname, '../../../client/src/utils/doctors.js');
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const arrayString = fileContent.substring(fileContent.indexOf('['), fileContent.lastIndexOf(']') + 1);
+  return new Function('return ' + arrayString)();
+};
+
+router.get('/', (req, res) => {
   try {
-    const doctors = await Doctor.find({});
+    const doctors = getDoctors();
     res.json(doctors);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   try {
-    const doctor = await Doctor.findById(req.params.id);
+    const doctors = getDoctors();
+    const doctor = doctors.find(d => d.id.toString() === req.params.id || d._id?.toString() === req.params.id);
     if (doctor) {
       res.json(doctor);
     } else {
