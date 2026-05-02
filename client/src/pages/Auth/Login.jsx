@@ -11,10 +11,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    await login(email, password);
-    toast.success('Welcome back! Logged in successfully.');
+    login(email, password);
     navigate('/dashboard');
   };
 

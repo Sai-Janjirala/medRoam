@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
 
@@ -7,34 +7,37 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const [token, setToken] = useState(localStorage.getItem('token') || null);
 
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem('token', token);
-      setUser({ name: "Test User", email: "test@test.com", token });
-    } else {
-      localStorage.removeItem('token');
-      setUser(null);
-    }
-  }, [token]);
-
-  const login = async (email, password) => {
+  const login = (email, password) => {
     const fakeToken = 'fake-token-123';
+    const fakeUser = { name: 'Test User', email: 'test@test.com' };
+    
+    localStorage.setItem('token', fakeToken);
+    localStorage.setItem('user', JSON.stringify(fakeUser));
+    
     setToken(fakeToken);
-    setUser({ name: "Test User", email: "test@test.com" });
-    return { success: true };
+    setUser(fakeUser);
   };
 
-  const register = async (name, email, password) => {
+  const register = (name, email, password) => {
     const fakeToken = 'fake-token-123';
+    const fakeUser = { name: 'Test User', email: 'test@test.com' };
+    
+    localStorage.setItem('token', fakeToken);
+    localStorage.setItem('user', JSON.stringify(fakeUser));
+    
     setToken(fakeToken);
-    setUser({ name: "Test User", email: "test@test.com" });
-    return { success: true };
+    setUser(fakeUser);
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setToken(null);
     setUser(null);
   };

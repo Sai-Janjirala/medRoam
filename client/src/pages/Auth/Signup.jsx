@@ -13,16 +13,9 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignup = async (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
-
-    await register(name, email, password);
-    toast.success('Account created successfully!');
+    register(name, email, password);
     navigate('/dashboard');
   };
 
