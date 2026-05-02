@@ -2,7 +2,7 @@ export const doctors = [
   {
     id: 1,
     name: "Dr. Marcus Thorne",
-    specialty: "SENIOR CARDIOLOGIST",
+    specialty: "Cardiology",
     rating: "4.9",
     reviews: "128",
     location: "MedCenter, SF",
@@ -15,7 +15,7 @@ export const doctors = [
   {
     id: 2,
     name: "Dr. Elena Rodriguez",
-    specialty: "PEDIATRIC SPECIALIST",
+    specialty: "Pediatrics",
     rating: "5.0",
     reviews: "242",
     location: "Children's Health, Austin",
@@ -28,7 +28,7 @@ export const doctors = [
   {
     id: 3,
     name: "Dr. James Wilson",
-    specialty: "DERMATOLOGIST",
+    specialty: "Dermatology",
     rating: "4.8",
     reviews: "86",
     location: "Skin Institute, NYC",
@@ -41,33 +41,33 @@ export const doctors = [
   {
     id: 4,
     name: "Dr. Sarah Chen",
-    specialty: "NEUROLOGIST",
+    specialty: "General Practice",
     rating: "4.9",
     reviews: "156",
     location: "Mount Sinai, NY",
     experience: "10+ Yrs Exp",
     availableNow: false,
-    price: "$250.00",
+    price: "$150.00",
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80",
-    about: "Dr. Sarah Chen specializes in treating disorders of the nervous system. She has extensive experience with migraines, epilepsy, and movement disorders."
+    about: "Dr. Sarah Chen provides comprehensive primary care to patients of all ages, focusing on preventive medicine and chronic disease management."
   },
   {
     id: 5,
     name: "Dr. Michael Chang",
-    specialty: "ORTHOPEDIC SURGEON",
+    specialty: "Cardiology",
     rating: "4.7",
     reviews: "98",
-    location: "Sports Med, Chicago",
+    location: "Heart Care, Chicago",
     experience: "14+ Yrs Exp",
     availableNow: true,
     price: "$220.00",
     image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80",
-    about: "Dr. Michael Chang is an expert in sports injuries and joint replacements. He is dedicated to helping patients regain their mobility and active lifestyles."
+    about: "Dr. Michael Chang is an expert in treating heart arrhythmias and coronary artery disease. He is dedicated to helping patients regain their heart health."
   },
   {
     id: 6,
     name: "Dr. Emily Taylor",
-    specialty: "PSYCHIATRIST",
+    specialty: "General Practice",
     rating: "5.0",
     reviews: "312",
     location: "Wellness Clinic, Seattle",
@@ -75,6 +75,32 @@ export const doctors = [
     availableNow: true,
     price: "$160.00",
     image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=400&q=80",
-    about: "Dr. Emily Taylor offers compassionate psychiatric care, focusing on anxiety, depression, and stress management. She provides both therapy and medication management."
+    about: "Dr. Emily Taylor offers compassionate primary care, focusing on holistic health, nutrition counseling, and stress management."
+  },
+  {
+    id: 7,
+    name: "Dr. David Kim",
+    specialty: "Dermatology",
+    rating: "4.8",
+    reviews: "124",
+    location: "Clear Skin Clinic, SF",
+    experience: "7+ Yrs Exp",
+    availableNow: true,
+    price: "$190.00",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80",
+    about: "Dr. David Kim specializes in acne treatment, skin cancer screening, and anti-aging treatments. He uses the latest technologies for optimal results."
+  },
+  {
+    id: 8,
+    name: "Dr. Lisa Patel",
+    specialty: "Pediatrics",
+    rating: "4.9",
+    reviews: "189",
+    location: "Kids Care, NYC",
+    experience: "11+ Yrs Exp",
+    availableNow: false,
+    price: "$155.00",
+    image: "https://images.unsplash.com/photo-1594824436998-d467946927d7?w=400&q=80",
+    about: "Dr. Lisa Patel provides excellent pediatric care, from routine checkups and immunizations to managing complex childhood illnesses."
   }
 ];

@@ -19,6 +19,7 @@ const Search = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSpecialties, setSelectedSpecialties] = useState([]);
   const debouncedSearch = useDebounce(searchQuery, 400);
 
   const fetchDoctors = useCallback(() => {
@@ -51,14 +52,35 @@ const Search = () => {
   useEffect(() => { fetchDoctors(); }, [fetchDoctors]);
 
   const filteredDoctors = useMemo(() => {
-    if (!debouncedSearch) return doctors;
-    const q = debouncedSearch.toLowerCase();
-    return doctors.filter(d =>
-      d.name.toLowerCase().includes(q) ||
-      d.specialty.toLowerCase().includes(q) ||
-      d.location.toLowerCase().includes(q)
+    let result = doctors;
+    
+    // Apply search query
+    if (debouncedSearch) {
+      const q = debouncedSearch.toLowerCase();
+      result = result.filter(d =>
+        d.name.toLowerCase().includes(q) ||
+        d.specialty.toLowerCase().includes(q) ||
+        d.location.toLowerCase().includes(q)
+      );
+    }
+    
+    // Apply specialty filters (if any selected)
+    if (selectedSpecialties.length > 0) {
+      result = result.filter(d => 
+        selectedSpecialties.includes(d.specialty)
+      );
+    }
+    
+    return result;
+  }, [doctors, debouncedSearch, selectedSpecialties]);
+
+  const handleSpecialtyChange = (spec) => {
+    setSelectedSpecialties(prev => 
+      prev.includes(spec) 
+        ? prev.filter(s => s !== spec)
+        : [...prev, spec]
     );
-  }, [doctors, debouncedSearch]);
+  };
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#076249] selection:text-white">
@@ -129,7 +151,12 @@ const Search = () => {
               <div className="space-y-3">
                 {['Cardiology', 'Dermatology', 'General Practice', 'Pediatrics'].map((spec, idx) => (
                   <label key={idx} className="flex items-center space-x-3 cursor-pointer group">
-                    <input type="checkbox" defaultChecked={idx === 0} className="w-4 h-4 text-[#076249] bg-white border-gray-300 rounded focus:ring-[#076249] accent-[#076249] cursor-pointer" />
+                    <input 
+                      type="checkbox" 
+                      checked={selectedSpecialties.includes(spec)}
+                      onChange={() => handleSpecialtyChange(spec)}
+                      className="w-4 h-4 text-[#076249] bg-white border-gray-300 rounded focus:ring-[#076249] accent-[#076249] cursor-pointer" 
+                    />
                     <span className="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition-colors">{spec}</span>
                   </label>
                 ))}
