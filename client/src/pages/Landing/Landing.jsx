@@ -22,7 +22,7 @@ const Landing = () => {
         <div className="font-bold text-2xl tracking-tight text-gray-900">Med<span className="text-[#076249]">Roam</span></div>
         <div className="hidden md:flex space-x-10 text-sm font-semibold text-gray-600">
           <a href="#" className="hover:text-[#076249] transition-colors">Helpline</a>
-          <a href="#" className="hover:text-[#076249] transition-colors">Providers</a>
+          <Link to="/search" className="hover:text-[#076249] transition-colors">Providers</Link>
         </div>
         <div className="flex items-center space-x-6 text-sm font-semibold">
           <Link to="/login" className="text-gray-600 hover:text-[#076249] transition-colors">Login</Link>
@@ -57,9 +57,9 @@ const Landing = () => {
                 <ChevronDown className="text-gray-400 group-hover:text-gray-600 transition-colors" size={16} />
               </div>
             </div>
-            <button className="bg-[#076249] text-white px-8 py-4 md:py-3 rounded-xl font-semibold hover:bg-[#064f3a] transition-colors m-2 md:m-0 shadow-md">
+            <Link to="/search" className="bg-[#076249] text-white px-8 py-4 md:py-3 rounded-xl font-semibold hover:bg-[#064f3a] transition-colors m-2 md:m-0 shadow-md flex items-center justify-center">
               Find Help
-            </button>
+            </Link>
           </div>
         </div>
       </section>
