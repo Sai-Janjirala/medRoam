@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import BASE_URL from '../../utils/api';
 import { doctors as mockDoctors } from '../../utils/doctors';
 import { ChevronLeft, Calendar, Clock, CreditCard, ShieldCheck, MapPin } from 'lucide-react';
 
@@ -18,7 +17,17 @@ const Booking = () => {
   const [email, setEmail] = useState('julian.rossi@traveler.com');
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/doctors/${id}`)
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
+    if (!apiUrl) {
+      console.warn("VITE_API_URL is empty, using mock data.");
+      const fallbackDoc = mockDoctors.find(d => d.id === parseInt(id));
+      setDoc(fallbackDoc || null);
+      setLoading(false);
+      return;
+    }
+
+    fetch(`${apiUrl}/api/doctors/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Not found");
         return res.json();
@@ -49,7 +58,13 @@ const Booking = () => {
       amount: (parseFloat(doc.price.replace('$', '')) + 5).toFixed(2)
     };
 
-    fetch(`${BASE_URL}/api/bookings`, {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    if (!apiUrl) {
+      navigate('/booking-success');
+      return;
+    }
+
+    fetch(`${apiUrl}/api/bookings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bookingData)
@@ -58,7 +73,10 @@ const Booking = () => {
     .then(() => {
       navigate('/booking-success');
     })
-    .catch(err => console.error("Error creating booking", err));
+    .catch(err => {
+      console.warn("Error creating booking, continuing mock flow", err);
+      navigate('/booking-success');
+    });
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center font-bold text-gray-500">Loading Booking Details...</div>;

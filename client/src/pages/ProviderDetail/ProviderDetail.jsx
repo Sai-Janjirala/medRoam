@@ -1,6 +1,5 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import BASE_URL from '../../utils/api';
 import { doctors as mockDoctors } from '../../utils/doctors';
 import {
   MapPin,
@@ -21,7 +20,17 @@ const ProviderDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/doctors/${id}`)
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
+    if (!apiUrl) {
+      console.warn("VITE_API_URL is empty, using mock data.");
+      const fallbackDoc = mockDoctors.find(d => d.id === parseInt(id));
+      setDoc(fallbackDoc || null);
+      setLoading(false);
+      return;
+    }
+
+    fetch(`${apiUrl}/api/doctors/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

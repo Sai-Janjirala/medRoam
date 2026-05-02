@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import BASE_URL from '../../utils/api';
 import { doctors as mockDoctors } from '../../utils/doctors';
 import SkeletonCard from '../../components/SkeletonCard';
 import useDebounce from '../../hooks/useDebounce';
@@ -24,7 +23,16 @@ const Search = () => {
 
   const fetchDoctors = useCallback(() => {
     setLoading(true);
-    fetch(`${BASE_URL}/api/doctors`)
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
+    if (!apiUrl) {
+      console.warn('VITE_API_URL is empty, using mock data.');
+      setDoctors(mockDoctors);
+      setLoading(false);
+      return;
+    }
+
+    fetch(`${apiUrl}/api/doctors`)
       .then(res => {
         if (!res.ok) throw new Error('API failed');
         return res.json();
