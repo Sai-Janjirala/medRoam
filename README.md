@@ -1,232 +1,224 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/MedRoam-Tourist%20Medical%20Assistance-00D4AA?style=for-the-badge&labelColor=0A1628" alt="MedRoam Banner"/>
+<h1>🏥 MedRoam</h1>
 
-# 🏥 MedRoam — Tourist Medical Assistance Platform
+<p><strong>Find & Book Verified Doctors Abroad — Instantly</strong></p>
 
-**Find verified, English-speaking healthcare providers anywhere you travel.**  
-Transparent pricing · Real-time availability · 24/7 Emergency Helpline
+<p>
+  <a href="https://med-roam.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Visit%20Site-2D6A4F?style=for-the-badge&logo=vercel" alt="Live Demo" />
+  </a>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Deployed-Vercel%20%2B%20Render-black?style=for-the-badge" alt="Deployed" />
+</p>
 
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
-[![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2-764ABC?style=flat-square&logo=redux)](https://redux-toolkit.js.org/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
-[![MUI](https://img.shields.io/badge/Material_UI-5-007FFF?style=flat-square&logo=mui)](https://mui.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+<p>MedRoam is a full stack medical travel platform that helps patients find and book verified doctors abroad for affordable, transparent medical care across 48 cities.</p>
 
 </div>
 
 ---
 
-## 📌 Problem Statement
+## 📸 Screenshots
 
-> **Traveling abroad while sick is one of the most stressful experiences a person can face.**
+| Landing Page | Doctor Search |
+|---|---|
+| ![Landing Page](./screenshots/landing.png) | ![Doctor Search](./screenshots/search.png) |
 
-Every year, millions of international tourists find themselves in urgent need of medical care in an unfamiliar country — unable to locate English-speaking doctors, unaware of local pricing structures, and confused by foreign healthcare systems. Existing solutions are fragmented: Google searches return outdated listings, embassy pages lack real-time availability, and hospital walk-ins are expensive and time-consuming.
-
-**MedRoam solves this** by providing a single, trusted platform where travelers can:
-
-- 🔍 **Instantly search** for verified, English-speaking healthcare providers by city or specialty
-- 💰 **Compare transparent pricing** before booking — no surprise bills
-- 🟢 **Check real-time availability** and book slots directly
-- 🚨 **Access emergency helplines** with city-specific numbers in one tap
-- 📋 **Manage appointments and saved providers** from a personalized dashboard
+| Doctor Profile | Dashboard |
+|---|---|
+| ![Doctor Profile](./screenshots/provider.png) | ![Dashboard](./screenshots/dashboard.png) |
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 🔍 Smart City Search | Hero-driven search with debounced input and location autocomplete |
-| 🏥 Provider Discovery | Filterable cards with specialty, language, rating, and distance filters |
-| 💵 Transparent Pricing | Structured pricing tables per provider — no hidden fees |
-| 📅 Availability Slots | Real-time booking slots with live "Available Now" status indicators |
-| 🆘 Emergency Helpline | City-specific emergency numbers, quick-connect form, and live agent status |
-| 🔐 Auth System | JWT-based login + 3-step registration with travel & medical preferences |
-| 📊 Tourist Dashboard | Saved providers, upcoming appointments, and drag-and-drop photo upload |
-| 🛡️ Admin Panel | Role-based provider management, verification queue, and platform analytics |
-| 📱 Fully Responsive | Mobile-first design that works seamlessly on all screen sizes |
-| ♿ Accessible | WCAG-compliant components with keyboard navigation and ARIA labels |
+- 🔍 **Smart Search** — Filter doctors by city, specialty, and availability
+- 👨‍⚕️ **Doctor Profiles** — View ratings, pricing, available slots, and reviews
+- 📅 **Appointment Booking** — Book consultation slots directly
+- 🔐 **User Auth** — Login & Signup flow with session management
+- 📊 **Patient Dashboard** — View upcoming appointments and saved providers
+- 💰 **Transparent Pricing** — See consultation rates before booking
+- 📱 **Fully Responsive** — Works seamlessly on all devices
+- 🌍 **48 Cities** — Wide network coverage across India and abroad
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend Core
-| Technology | Version | Purpose |
-|---|---|---|
-| [React](https://reactjs.org/) | 18 | UI Component Library |
-| [Vite](https://vitejs.dev/) | 5 | Build Tool & Dev Server |
-| [React Router v6](https://reactrouter.com/) | 6 | Client-Side Routing |
-
-### State & Data
-| Technology | Version | Purpose |
-|---|---|---|
-| [Redux Toolkit](https://redux-toolkit.js.org/) | 2 | Global State Management |
-| [Axios](https://axios-http.com/) | 1.x | HTTP Client with Interceptors |
-| [Formik](https://formik.org/) + [Yup](https://github.com/jquense/yup) | Latest | Form Handling & Validation |
-
-### Styling & UI
-| Technology | Version | Purpose |
-|---|---|---|
-| [Tailwind CSS](https://tailwindcss.com/) | 3 | Utility-First Styling |
-| [Material UI (MUI)](https://mui.com/) | 5 | Component Library |
-| Plus Jakarta Sans | — | Heading Typography |
-| Inter | — | Body Typography |
-
-### Developer Experience
-| Technology | Purpose |
+| Layer | Technology |
 |---|---|
-| [React Toastify](https://fkhadra.github.io/react-toastify/) | Toast Notifications |
-| [React Helmet Async](https://github.com/staylor/react-helmet-async) | Dynamic SEO Meta Tags |
-| Custom Hooks (`useAuth`, `useDebounce`) | Reusable Logic Abstraction |
-| Mock API Service | Axios Interceptors + Simulated Delays |
-| Route | Page | Description |
-|---|---|---|
-| `/` | Landing Page | Hero search, stats, how-it-works, featured cities, emergency CTA |
-| `/search` | Search Results | Sidebar filters + provider cards with skeleton loaders |
-| `/provider/:id` | Provider Detail | Full profile, pricing table, availability slots, reviews |
-| `/helpline` | Emergency Helpline | City-specific numbers, quick-connect form, live agent status |
-| `/login` | Login | Formik-based authentication form |
-| `/register` | Register | 3-step multi-page form with travel & medical preferences |
-| `/dashboard` | Tourist Dashboard | Saved providers, appointments, drag-and-drop photo upload |
-| `/admin` | Admin Panel | Role-based provider management and platform stats |
-
----
-
-## 🎨 Design System
-
-```
-Primary Background  →  Dark Navy     #0A1628
-Primary Accent      →  Electric Teal #00D4AA
-Emergency / Urgent  →  Red           #EF4444
-Available Now       →  Green         #22C55E
-Unavailable         →  Gray          #6B7280
-
-Headings  →  Plus Jakarta Sans  (700, 600)
-Body      →  Inter              (400, 500)
-
-Border Radius  →  xl (12px)
-Shadow Style   →  Subtle, layered box shadows
-```
+| **Frontend** | React 18 + Vite |
+| **Routing** | React Router DOM |
+| **HTTP Client** | Axios |
+| **Backend** | Node.js + Express |
+| **Frontend Deploy** | Vercel |
+| **Backend Deploy** | Render |
+| **Styling** | CSS Modules |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js `>= 18.x`
-- npm `>= 9.x` or yarn
+- Node.js 18+
+- npm 9+
+- Git
 
 ### Installation
 
+**1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/medroam.git
-cd medroam
+git clone https://github.com/YOUR_USERNAME/medRoam.git
+cd medRoam
+```
 
+**2. Install frontend dependencies**
+```bash
+cd client
 npm install
+```
 
-cp .env.example .env.local
+**3. Install backend dependencies**
+```bash
+cd ../server
+npm install
+```
 
+**4. Set up environment variables**
+```bash
+cd server
+cp .env.example .env
+```
+
+Edit `server/.env`:
+```
+PORT=5000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
+
+Edit `client/.env.local`:
+```
+VITE_API_URL=http://localhost:5000
+```
+
+**5. Run both servers together**
+```bash
+cd ..
 npm run dev
 ```
 
-The app will be running at `http://localhost:5173`
+- Frontend → `http://localhost:5173`
+- Backend → `http://localhost:5000`
 
-### Build for Production
+---
 
-```bash
-npm run build
-npm run preview
+## 📁 Project Structure
+
+```
+medRoam/
+├── client/                  # React frontend (Vite)
+│   ├── public/
+│   │   ├── robots.txt
+│   │   └── sitemap.xml
+│   └── src/
+│       ├── components/      # Reusable UI components
+│       │   ├── SEO.jsx
+│       │   └── ProtectedRoute.jsx
+│       ├── context/
+│       │   └── AuthContext.jsx
+│       ├── pages/
+│       │   ├── Auth/        # Login & Signup
+│       │   ├── Booking/     # Booking flow
+│       │   ├── Dashboard/   # User dashboard
+│       │   ├── Landing/     # Homepage
+│       │   ├── ProviderDetail/
+│       │   └── Search/      # Doctor search
+│       ├── hooks/
+│       └── utils/
+│           ├── api.js
+│           └── doctors.js
+│
+└── server/                  # Express backend
+    └── src/
+        ├── controllers/
+        ├── middleware/
+        │   └── auth.js
+        ├── routes/
+        │   ├── auth.js
+        │   ├── bookings.js
+        │   ├── doctors.js
+        │   └── hello.js
+        └── index.js
 ```
 
 ---
 
-## 🔑 Environment Variables
+## 🔗 API Endpoints
 
-```env
-VITE_API_BASE_URL=http://localhost:3000/api
-VITE_MOCK_DELAY_MS=600
-VITE_APP_NAME=MedRoam
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | API health & welcome |
+| `GET` | `/health` | Health check |
+| `GET` | `/api/doctors` | Get all doctors |
+| `GET` | `/api/doctors/:id` | Get doctor by ID |
+| `POST` | `/api/auth/register` | User registration |
+| `POST` | `/api/auth/login` | User login |
+| `GET` | `/api/bookings` | Get all bookings |
+| `POST` | `/api/bookings` | Create a booking |
 
-> See `.env.example` for all available environment variables.
-
----
-
-## 🧩 Custom Hooks
-
-```js
-const { user, isAuthenticated, login, logout } = useAuth();
-
-const debouncedSearch = useDebounce(searchQuery, 400);
-```
+📖 **[View Full API Documentation on Postman](YOUR_POSTMAN_LINK)**
 
 ---
 
-## 🔌 Mock API
+## 🌐 Deployment
 
-The platform ships with a fully mocked API service using **Axios interceptors** and **simulated network delays**, making it immediately runnable without a backend.
-
-- Auth endpoints: login, register, refresh token
-- Provider endpoints: search, filters, detail, reviews
-- Appointment endpoints: create, list, cancel
-- Helpline endpoints: city numbers, agent status
-
-WebSocket connections are stubbed with placeholders, ready to be replaced with a live WebSocket server for real-time availability updates.
-
----
-
-## 📦 Key Scripts
-
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-npm run format
-```
+| Service | Platform | URL |
+|---|---|---|
+| Frontend | Vercel | https://med-roam.vercel.app |
+| Backend | Render | https://medroam.onrender.com |
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Backend API integration (Node.js / Django)
-- [ ] Real-time availability via WebSockets
-- [ ] Multi-language support (i18n)
-- [ ] Native mobile app (React Native)
-- [ ] Insurance verification integration
-- [ ] Provider video consultations
-- [ ] Offline mode with service workers
+- [ ] Real doctor database integration
+- [ ] Payment gateway (Stripe/Razorpay)
+- [ ] Email notifications for bookings
+- [ ] Multi-language support
+- [ ] Mobile app (React Native)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Please open an issue first to discuss what you'd like to change.
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes: `git commit -m 'feat: add your feature'`
-4. Push to the branch: `git push origin feature/your-feature-name`
+1. Fork the repo
+2. Create your branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-Please follow the [Conventional Commits](https://www.conventionalcommits.org/) standard for commit messages.
 
 ---
 
-## 📝 License
+## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 👨‍💻 Author
+
+**Sai Janjirala**
+
+[![GitHub](https://img.shields.io/badge/GitHub-@YOUR_USERNAME-181717?style=flat&logo=github)](https://github.com/YOUR_USERNAME)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/YOUR_PROFILE)
 
 ---
 
 <div align="center">
-
-Made with ❤️ for travelers worldwide
-
-**[⭐ Star this repo](https://github.com/your-username/medroam)** if you find it useful!
-
+  <p>⭐ Star this repo if you found it helpful!</p>
+  <p>Built with ❤️ by Sai Janjirala</p>
 </div>
