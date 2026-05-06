@@ -23,11 +23,11 @@
 
 | Landing Page | Doctor Search |
 |---|---|
-| ![Landing Page](https://claude.ai/api/96c7347c-75b9-484f-9129-2da5af3c92e2/files/9ec52999-ba70-4c73-b5b6-cfb8a35a7d8d/preview) | ![Doctor Search](https://claude.ai/api/96c7347c-75b9-484f-9129-2da5af3c92e2/files/313ad054-84a7-458b-a539-0d32f22941d7/preview) |
+| ![Landing Page](./screenshots/landing.png) | ![Doctor Search](./screenshots/search.png) |
 
 | Doctor Profile | Dashboard |
 |---|---|
-| ![Doctor Profile](https://claude.ai/api/96c7347c-75b9-484f-9129-2da5af3c92e2/files/65a85e1e-f4ea-4465-bf95-1202e576cbb9/preview) | ![Dashboard](https://claude.ai/api/96c7347c-75b9-484f-9129-2da5af3c92e2/files/e6908591-7600-48ce-bd79-02df3895b942/preview) |
+| ![Doctor Profile](./screenshots/provider.png) | ![Dashboard](./screenshots/dashboard.png) |
 
 ---
 
