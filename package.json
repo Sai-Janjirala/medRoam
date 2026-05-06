@@ -1,13 +1,17 @@
 {
   "name": "medroam",
   "version": "1.0.0",
+  "private": true,
   "description": "<div align=\"center\">",
-  "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
-    "start:client": "npm run dev --prefix client",
-    "start:server": "npm run dev --prefix server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev -w frontend\" \"npm run dev -w backend\"",
+    "build": "npm run build -w frontend",
+    "test": "npm run test -w backend"
   },
   "repository": {
     "type": "git",
